@@ -8,11 +8,13 @@ import io.micrometer.core.instrument.MeterRegistry;
 @Component
 public class MyBean {
 
-    //private final Map<String> dictionary;
-
     public MyBean(MeterRegistry registry) {
-        //this.dictionary = Dictionary.load();
-        registry.gauge("dictionary.size", 100);
+        registry.gauge("hpametric", 50);
+    }
+
+    @Bean
+    public MeterRegistryCustomizer<MeterRegistry> metricsCommonTags() {
+        return (registry) -> registry.config().commonTags("Type: "k8s_pod");
     }
 
 }
