@@ -35,6 +35,25 @@ spec:
           securityContext:
             {{- toYaml .Values.securityContext | nindent 12 }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+          env:
+          - name: CLUSTER_NAME
+            value: "{{ .Values.CLUSTER_NAME }}"
+          - name: LOCATION
+            value: "{{ .Values.LOCATION }}"
+          - name: PROJECT_ID
+            value: "{{ .Values.PROJECT_ID }}"
+          - name: POD_ID
+            valueFrom:
+              fieldRef:
+                fieldPath: metadata.uid
+          - name: POD_NAME
+            valueFrom:
+              fieldRef:
+                fieldPath: metadata.name
+          - name: NAMESPACE_NAME
+            valueFrom:
+              fieldRef:
+                fieldPath: metadata.namespace            
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           ports:
             - name: http

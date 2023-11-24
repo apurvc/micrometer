@@ -13,10 +13,10 @@ spec:
   minReplicas: {{ .Values.autoscaling.minReplicas }}
   maxReplicas: {{ .Values.autoscaling.maxReplicas }}
   metrics:
-    - type: Pods
-      pods:
+    - type: External
+      external:
         metric:
-          name: hpametric
+          name: custom.googleapis.com|hpametric
         target:
           type: AverageValue
           averageValue: 20

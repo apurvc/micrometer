@@ -96,3 +96,6 @@ nodeSelector: {}
 tolerations: []
 
 affinity: {}
+CLUSTER_NAME: cluster1
+LOCATION: europe-west1
+PROJECT_ID: playground-s-11-7c2d513d
