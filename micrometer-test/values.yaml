@@ -5,7 +5,7 @@
 replicaCount: 1
 
 image:
-  repository: gcr.io/playground-s-11-2af6ea26/micrometer
+  repository: gcr.io/GCP_PROJECT_ID/micrometer
   pullPolicy: Always
   # Overrides the image tag whose default is the chart appVersion.
   tag: ""
@@ -98,4 +98,4 @@ tolerations: []
 affinity: {}
 CLUSTER_NAME: cluster1
 LOCATION: europe-west1
-PROJECT_ID: playground-s-11-7c2d513d
+PROJECT_ID: GCP_PROJECT_ID

@@ -15,9 +15,22 @@ The following guides illustrate how to use some features concretely:
 
 * [Building a RESTful Web Service with Spring Boot Actuator](https://spring.io/guides/gs/actuator-service/)
 
-### Setup cluster
+### Setup a test cluster (update project ids)
 
-'''gcloud beta container --project "{GCP_PROJECT_ID}" clusters create "cluster-1" --no-enable-basic-auth --cluster-version "1.25.12-gke.500" --release-channel "None" --machine-type "e2-small" --image-type "COS_CONTAINERD" --disk-type "pd-balanced" --disk-size "100" --metadata disable-legacy-endpoints=true --scopes "https://www.googleapis.com/auth/devstorage.read_only","https://www.googleapis.com/auth/logging.write","https://www.googleapis.com/auth/monitoring","https://www.googleapis.com/auth/servicecontrol","https://www.googleapis.com/auth/service.management.readonly","https://www.googleapis.com/auth/trace.append" --num-nodes "2" --logging=SYSTEM,WORKLOAD --monitoring=SYSTEM --enable-ip-alias --network "projects/{GCP_PROJECT_ID}/global/networks/default" --subnetwork "projects/{GCP_PROJECT_ID}/regions/europe-west1/subnetworks/default" --no-enable-intra-node-visibility --default-max-pods-per-node "110" --security-posture=disabled --workload-vulnerability-scanning=disabled --no-enable-master-authorized-networks --addons HorizontalPodAutoscaling,HttpLoadBalancing,GcePersistentDiskCsiDriver --enable-autoupgrade --enable-autorepair --max-surge-upgrade 1 --max-unavailable-upgrade 0 --binauthz-evaluation-mode=DISABLED --no-enable-managed-prometheus --enable-shielded-nodes --region "europe-west1-c"
+``` gcloud beta container --project "{GCP_PROJECT_ID}" clusters create "cluster-1" --no-enable-basic-auth --cluster-version "1.25.12-gke.500" --release-channel "None" --machine-type "e2-small" --image-type "COS_CONTAINERD" --disk-type "pd-balanced" --disk-size "100" --metadata disable-legacy-endpoints=true --scopes "https://www.googleapis.com/auth/devstorage.read_only","https://www.googleapis.com/auth/logging.write","https://www.googleapis.com/auth/monitoring","https://www.googleapis.com/auth/servicecontrol","https://www.googleapis.com/auth/service.management.readonly","https://www.googleapis.com/auth/trace.append" --num-nodes "2" --logging=SYSTEM,WORKLOAD --monitoring=SYSTEM --enable-ip-alias --network "projects/{GCP_PROJECT_ID}/global/networks/default" --subnetwork "projects/{GCP_PROJECT_ID}/regions/europe-west1/subnetworks/default" --no-enable-intra-node-visibility --default-max-pods-per-node "110" --security-posture=disabled --workload-vulnerability-scanning=disabled --no-enable-master-authorized-networks --addons HorizontalPodAutoscaling,HttpLoadBalancing,GcePersistentDiskCsiDriver --enable-autoupgrade --enable-autorepair --max-surge-upgrade 1 --max-unavailable-upgrade 0 --binauthz-evaluation-mode=DISABLED --no-enable-managed-prometheus --enable-shielded-nodes --region "europe-west1-c" ```
+
+### Build and deploy code using cloud shell
+To authenticate to GCR use 
+
+```gcloud auth configure-docker    ``` 
+
+Build image with correct GCP_PROJECT_ID
+
+``` gradle jib --image=gcr.io/GCP_PROJECT_ID/micrometer ```
+
+Connect to GKE and then Deploy the chart
+
+``` helm upgrade --install metric-test micrometer-test/ --set PROJECT_ID={GCP_PROJECT_ID}```
 
 ### Additional Links
 These additional references should also help you:
