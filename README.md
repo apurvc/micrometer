@@ -32,6 +32,10 @@ Connect to GKE and then Deploy the chart
 
 ``` helm upgrade --install metric-test micrometer-test/ --set PROJECT_ID={GCP_PROJECT_ID}```
 
+### See the scaling after a while
+
+![Scaled pods](https://github.com/apurvc/micrometer/blob/main/Screenshot%202023-11-24%20171002.png "Scaled pods")
+
 ### Additional Links
 These additional references should also help you:
 
