@@ -24,6 +24,10 @@ To authenticate to GCR use
 
 ```gcloud auth configure-docker    ``` 
 
+Deploy Stackdriver Adapter 
+
+```kubectl apply -f https://raw.githubusercontent.com/GoogleCloudPlatform/k8s-stackdriver/master/custom-metrics-stackdriver-adapter/deploy/production/adapter_new_resource_model.yaml    ``` 
+
 Build image with correct GCP_PROJECT_ID
 
 ``` gradle jib --image=gcr.io/GCP_PROJECT_ID/micrometer ```
@@ -40,4 +44,5 @@ Connect to GKE and then Deploy the chart
 These additional references should also help you:
 
 * [Gradle Build Scans – insights for your project's build](https://scans.gradle.com#gradle)
+* [Stackdriver Adapter](https://github.com/GoogleCloudPlatform/k8s-stackdriver/blob/master/custom-metrics-stackdriver-adapter/README.md)
 
