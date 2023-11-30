@@ -46,3 +46,8 @@ These additional references should also help you:
 * [Gradle Build Scans – insights for your project's build](https://scans.gradle.com#gradle)
 * [Stackdriver Adapter](https://github.com/GoogleCloudPlatform/k8s-stackdriver/blob/master/custom-metrics-stackdriver-adapter/README.md)
 
+### SHA ID of docker image of stackdriver adapter
+sha256:6937c0a9b2035d7ab4fee817703241161af149578c4ad685a9745070a92901f5
+
+### Outstanding 
+Identify why Kind External is needed.
